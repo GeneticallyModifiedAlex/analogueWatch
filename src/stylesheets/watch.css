@@ -1,6 +1,8 @@
 :root{
     --secondhand-color: red;
     --watch-face-color: #282c34;
+
+    --hour-hand-color: #f9f6f2;
 }
 .WatchBody{
     margin:10px;
@@ -14,29 +16,67 @@
     height: 400px;
     background-color: var(--watch-face-color);
     border-radius: 50%;
+
+    z-index: 0;
 }
 .WatchFace_center {
+    position:absolute;
     background-color: var(--secondhand-color);
     width:13px;
     height:13px;
     border-radius: 50%;
+    margin-top: 10px;
+    
+    z-index: 4;
 }
 .WatchFace_center_second {
-    background-color: var(--secondhand-color);
-    width:10px;
-    height:10px;
-    border-radius: 50%;
-}
-.WatchFace_center_hour {
-    background-color: var(--secondhand-color);
-    width:5px;
-    height:5px;
-    border-radius: 50%;
-}
-.WatchFace_center_minute {
+    position:absolute;
     background-color: var(--secondhand-color);
     width:3px;
-    height:3px;
-    border-radius: 50%;
+    height:190px;
+    margin-bottom: 175px;
+    margin-left:-5px;
+    transform-origin: bottom center;
+
+    animation: spin infinite 60s linear;
+    z-index: 4;
+}
+.WatchFace_center_hour {
+    position:absolute;
+    background-color: var(--hour-hand-color);
+    width:5px;
+    height:100px;
+    margin-bottom: 100px;
+
+    transform-origin: bottom center;
+
+    animation: spin 43200s infinite linear;
+    z-index: 3; 
+}
+@media (prefers-reduced-motion: no-preference) {
+    @keyframes spin {
+        from {
+            transform: rotate(0deg);
+        }
+        to {
+            transform: rotate(360deg);
+        }
+        
+    }
+}
+
+.WatchFace_center_minute {
+    position:absolute;
+    background-color: var(--hour-hand-color);
+    width:3px;
+    height:180px;
+    border-radius: 0%;
+    margin-bottom: 165px;
+
+    transform-origin: bottom center;
+
+    animation: spin infinite 3600s linear;
+
+    z-index: 2;
 }
 
